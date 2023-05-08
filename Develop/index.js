@@ -12,9 +12,9 @@
 // // Function call to initialize app
 // init();
 
-// const { mkdir, writeFile } = require("node:fs/promises");
-// const inquirer = require("inquirer");
-// const generateMarkdown = require("./utils/generateMarkdown.js");
+const { mkdir, writeFile } = require("node:fs/promises");
+const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
 const questions = [
     {
@@ -51,7 +51,7 @@ const questions = [
         name: 'license',
         type: 'list',
         message: 'How is your project licensed?',
-        choices: ['MIT', 'ISC', 'BSD2', 'BSD3', 'GPLv2', 'GPLv3', 'Apache', 'None' ],
+        choices: ['MIT','GPLv2', 'Apache', 'None' ],
     },
     {
         name: 'description',
@@ -82,7 +82,6 @@ const questions = [
 
 async function createBuildDir() {
     try {
-        // mkdir rejects if ./build/ exists when (default) { recursive: false }
         const createDir = await mkdir('./build/', { recursive: true });
         console.log(`created ${createDir}`);
         return createDir;
